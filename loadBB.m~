@@ -1,0 +1,3 @@
+function loadBB(output_path)
+    files = dir(fullfile(output_path,'*.mat'));
+end
