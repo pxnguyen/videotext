@@ -58,6 +58,5 @@ for level=1:length(scales)
     end
 end
 
-total
 bbs=total_bbs(1:total,:);
 end

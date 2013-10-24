@@ -20,7 +20,15 @@ function [dPath,ch,ch1,chC,chClfNm,dfNP]=globals
 
 %dPath = '/home/kai/datafresh/';
 %dPath = '/users/u1/kai/sharedata/plex/';
-dPath = '/home/phuc/Research/data2/';
+
+[~,hostname] = system('hostname');
+hostname = strtrim(hostname);
+switch hostname
+  case 'phuc-ThinkPad-T420'
+    dPath = '/home/phuc/Research/data2/';
+  case 'deepthought'
+    dPath = '/home/nguyenpx/data2/';
+end
 
 ch='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_';
 chC=mat2cell(ch',ones(length(ch),1));

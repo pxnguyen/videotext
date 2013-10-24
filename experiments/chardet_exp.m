@@ -10,7 +10,7 @@ ticId=ticStatus('Running PLEX on full images',1,30,1);
 for i=1:nImg
     current_image = image_paths(i).name;
     I = imread(fullfile(test_dataset,current_image));
-    t1S=tic; bbs=charDet(I,models,{}); t1=toc(t1S);
+    bbs=charDet(I,models,{});
 
     % save the bbs
     sF = fullfile(output_path,current_image);
