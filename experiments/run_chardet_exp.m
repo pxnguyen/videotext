@@ -15,17 +15,18 @@ fprintf('The results are at %s\n',output_path);
 %% Calculating the F-score for the characters
 gtDir = fullfile(dPath,'icdar','test','charAnn');
 fscores = zeros(length(ch),1);
-for char_index = 1:length(ch)
+ticId=ticStatus('Collecting Fscore',1,30,1);
+for char_index = 1:length(ch)-1
     [gt0,~] = bbGt('loadAll',gtDir,[],{'lbls',ch(char_index)});
+    dt0 = loadBB(output_path,char_index);
     current_char = ch(char_index);
 
     % filter out the groundtruth
-    gt_char = gt0(gt0(:,6)==char_index,:);
-    dt_char = dt0(dt0(:,6)==char_index,:);
-    [gt,dt] = bbGt( 'evalRes', gt_char, dt_char);
+    [gt,dt] = bbGt( 'evalRes', gt0, dt0);
     [xs,ys,sc]=bbGt('compRoc', gt, dt, 0);
-    [fs,~,~,idx] = Fscore(xs,ys);
+    fs = Fscore(xs,ys);
     fscores(char_index) = fs;
+    tocStatus(ticId,char_index/(length(ch)));
 end
 
 %% Second experiments:
