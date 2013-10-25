@@ -15,13 +15,18 @@ parfor i=1:nImg
     current_image = image_paths(i).name;
     fprintf('Working on index: %d, image: %s\n',i,current_image);
     I = imread(fullfile(test_dataset,current_image));
-    bbs=charDetSVM(I,models,{});
+    try
+        bbs=charDetSVM(I,models,{});
+    catch
+        fprintf('Error at index %d\n',i);
+    end
 
     % save the bbs
     sF = fullfile(output_path,[current_image '.mat']);
     saveRes(sF,bbs);
     %tocStatus(ticId,i/nImg);
 end
+
 
 % %% Calculating the F-score for the characters
 % gtDir = fullfile(dPath,'icdar','test','charAnn');
