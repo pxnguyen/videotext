@@ -17,6 +17,7 @@ parfor i=1:nImg
     fprintf('Working on index: %d, image: %s\n',i,current_image);
     sF = fullfile(output_path,[current_image '.mat']);
     if exist(sF,'file')
+        fprintf('%s already exists. Skipped\n',sf);
         continue
     end
     I = imread(fullfile(test_dataset,current_image));
