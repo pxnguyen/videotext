@@ -38,7 +38,10 @@ for level=1:length(scales)
         hm = hms_scale{model_index} + models{model_index}.bias;
 
         [y,x] = find(hm > initial_thresholds); % Get the locations of the response
+        if (isempty(x)); continue; end;
         scores = hm(hm > initial_thresholds);
+        
+        assert(length(x)==length(scores));
 
         %Correct the position
         x = x * configs.bin_size/current_scale;

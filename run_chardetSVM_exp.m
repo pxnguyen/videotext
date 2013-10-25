@@ -11,7 +11,7 @@ image_paths = dir(fullfile(test_dataset,'*.jpg'));
 nImg = length(image_paths);
 %ticId=ticStatus('Running PLEX on full images',1,30,1);
 saveRes=@(f,bbs)save(f,'bbs');
-parfor i=1:nImg
+parfor i=69
     current_image = image_paths(i).name;
     fprintf('Working on index: %d, image: %s\n',i,current_image);
     I = imread(fullfile(test_dataset,current_image));
