@@ -36,10 +36,19 @@ for level=1:length(scales)
     for model_index = 1:length(models)
         char_dims = models{model_index}.char_dims;
         hm = hms_scale{model_index} + models{model_index}.bias;
-
-        [y,x] = find(hm > initial_thresholds); % Get the locations of the response
-        if (isempty(x)); continue; end;
-        scores = hm(hm > initial_thresholds);
+        
+        ind = find(hm > initial_thresholds); % Get the locations of the response
+        [y,x] = ind2sub(size(hm),ind);
+        
+        if (isempty(x)); continue; end
+        
+        scores = hm(ind);
+        
+        if (size(x,2) > 1)
+            x = x';
+            y = y';
+            scores = scores';
+        end
         
         assert(length(x)==length(scores));
 

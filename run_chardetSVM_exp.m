@@ -15,16 +15,19 @@ parfor i=1:nImg
     bbs = [];
     current_image = image_paths(i).name;
     fprintf('Working on index: %d, image: %s\n',i,current_image);
+    sF = fullfile(output_path,[current_image '.mat']);
+    if exist(sF,'file')
+        continue
+    end
     I = imread(fullfile(test_dataset,current_image));
     try
         bbs=charDetSVM(I,models,{});
-    catch
+    catch e
         fprintf('Error at index %d\n',i);
-	continue
+        continue
     end
 
     % save the bbs
-    sF = fullfile(output_path,[current_image '.mat']);
     saveRes(sF,bbs);
     %tocStatus(ticId,i/nImg);
 end
