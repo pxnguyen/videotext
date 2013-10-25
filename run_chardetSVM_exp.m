@@ -16,7 +16,7 @@ parfor i=1:nImg
     current_image = image_paths(i).name;
     fprintf('Working on index: %d, image: %s\n',i,current_image);
     sF = fullfile(output_path,[current_image '.mat']);
-    if exist(sF,'file')
+    if exist(sF,'file') > 0
         fprintf('%s already exists. Skipped\n',sf);
         continue
     end
