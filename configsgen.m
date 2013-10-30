@@ -26,6 +26,7 @@ switch hostname
         configs.YVT_path = '/home/phuc/Research/data2/YVT';
     case 'deepthought'
         configs.piotr_toolbox = '/home/nguyenpx/code/toolbox';
+        configs.YVT_path = '/home/phuc/Research/data2/YVT';
 end
 
 % character classification configurations
