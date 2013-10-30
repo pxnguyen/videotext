@@ -17,7 +17,7 @@ parfor i=1:nImg
     fprintf('Working on index: %d, image: %s\n',i,current_image);
     sF = fullfile(output_path,[current_image '.mat']);
     if exist(sF,'file') > 0
-        fprintf('%s already exists. Skipped\n',sf);
+        fprintf('%s already exists. Skipped\n',sF);
         continue
     end
     I = imread(fullfile(test_dataset,current_image));
@@ -34,19 +34,19 @@ parfor i=1:nImg
 end
 
 
-% %% Calculating the F-score for the characters
-% gtDir = fullfile(dPath,'icdar','test','charAnn');
-% fscores = zeros(length(ch),1);
-% ticId=ticStatus('Collecting Fscore',1,30,1);
-% for char_index = 1:length(ch)-1
-%     [gt0,~] = bbGt('loadAll',gtDir,[],{'lbls',ch(char_index)});
-%     dt0 = loadBB(output_path,char_index);
-%     current_char = ch(char_index);
-% 
-%     % filter out the groundtruth
-%     [gt,dt] = bbGt( 'evalRes', gt0, dt0);
-%     [xs,ys,sc]=bbGt('compRoc', gt, dt, 0);
-%     fs = Fscore(xs,ys);
-%     fscores(char_index) = fs;
-%     tocStatus(ticId,char_index/(length(ch)));
-% end
+%% Calculating the F-score for the characters
+gtDir = fullfile(dPath,'icdar','test','charAnn');
+fscores = zeros(length(ch),1);
+ticId=ticStatus('Collecting Fscore',1,30,1);
+for char_index = 11 
+    [gt0,~] = bbGt('loadAll',gtDir,[],{'lbls',ch(char_index)});
+    dt0 = loadBB(output_path,char_index);
+    current_char = ch(char_index);
+
+    % filter out the groundtruth
+    [gt,dt] = bbGt( 'evalRes', gt0, dt0);
+    [xs,ys,sc]=bbGt('compRoc', gt, dt, 0);
+    fs = Fscore(xs,ys);
+    fscores(char_index) = fs;
+    tocStatus(ticId,char_index/(length(ch)));
+end

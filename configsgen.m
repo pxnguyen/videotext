@@ -1,5 +1,6 @@
 function configs = configsgen
 
+% YVT: Youtube Video Text
 configs = struct();
 
 [~,hostname] = system('hostname');
@@ -22,18 +23,17 @@ switch hostname
         configs.icdar_char = '/home/phuc/Research/data/ICDAR_char/';
         configs.svt_char = '/home/phuc/Research/Dataset/SVT-CHAR/';
         configs.piotr_toolbox = '/home/phuc/Research/toolbox';
+        configs.YVT_path = '/home/phuc/Research/data2/YVT';
     case 'deepthought'
         configs.piotr_toolbox = '/home/nguyenpx/code/toolbox';
 end
 
 % character classification configurations
-configs.root_scales = [3.5 3 2.5 2 1.5 1 .7];
 configs.canonical_scale = [100 80];
 configs.alphabets = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 % Training parameters
 configs.num_datamine_char = 5;
-
 configs.bin_size = 8;
 configs.n_orients= 8;
 configs.OVERLAY_TYPE=1;

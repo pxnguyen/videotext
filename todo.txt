@@ -1,0 +1,17 @@
+%% TODO list
+%%%% Pipeline %%%%%
+1. Convert every video from MP4 to avi using ffmpeg
+ffmpeg -i 17CLlZuiBkQ_0.mp4 -vcodec mpeg4 -acodec ac3 -ar 48000 -ab 192k output.avi
+%%% Done
+
+2. Finish writing the code up for detection of characters in video
+
+3. Run it on deepthought
+
+All these must be done by today
+
+%%%% Experiments %%%%
+
+%%% Dataset %%%%
+
+%%% Papers %%%%
