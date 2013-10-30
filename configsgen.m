@@ -33,6 +33,11 @@ end
 configs.canonical_scale = [100 80];
 configs.alphabets = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
+% Initial threshold to reject the "ridiculous" local boundingbox
+% This is used in getbbs, the point of this is to speed up the process
+% by not wasting time on really bad scored bounding box
+configs.initThres = -1;
+
 % Training parameters
 configs.num_datamine_char = 5;
 configs.bin_size = 8;

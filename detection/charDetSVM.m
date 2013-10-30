@@ -39,18 +39,13 @@ for level=1:length(scales)
         
         ind = find(hm > initial_thresholds); % Get the locations of the response
         [y,x] = ind2sub(size(hm),ind);
-        
         if (isempty(x)); continue; end
         
         scores = hm(ind);
         
-        if (size(x,2) > 1)
-            x = x';
-            y = y';
-            scores = scores';
-        end
+        if (size(x,2) > 1); x = x'; y = y'; scores = scores'; end
         
-        assert(length(x)==length(scores));
+        %assert(length(x)==length(scores));
 
         %Correct the position
         x = x * configs.bin_size/current_scale;
