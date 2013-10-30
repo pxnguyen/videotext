@@ -19,11 +19,19 @@ function hmresponses=gethm(vidobject,models)
 configs = configsgen;
 nFrames = vidobject.NumberOfFrames;
 hmresponses = cell(nFrames,1);
+
+new_temp_folder = fullfile('temp','hms',vidobject.Name);
+if ~exist(new_temp_folder,'dir')
+    mkdir(new_temp_folder)
+end
+saveFrame = @(sf,hms) save(sf,'hms');
 parfor frame_index=1:nFrames
     fprintf('Working on frame %d\n',frame_index);
     tic;
     I = read(vidobject,frame_index);
     hms = get_filter_responses(I,models,configs);
+    sf = fullfile(new_temp_folder,sprintf('%d.mat',frame_index));
+    saveFrame(sf,hms);
     
     % save the hms in a temp folder
     hmresponses{frame_index} = hms;
