@@ -26,16 +26,17 @@ if ~exist(new_temp_folder,'dir')
 end
 saveFrame = @(sf,hms) save(sf,'hms');
 parfor frame_index=1:nFrames
-    fprintf('Working on frame %d\n',frame_index);
+    fprintf('Working on frame %d...',frame_index);
     tic;
     I = read(vidobject,frame_index);
     hms = get_filter_responses(I,models,configs);
-    sf = fullfile(new_temp_folder,sprintf('%d.mat',frame_index));
-    saveFrame(sf,hms);
-    
-    % save the hms in a temp folder
-    hmresponses{frame_index} = hms;
     toc;
+    sf = fullfile(new_temp_folder,sprintf('%d.mat',frame_index));
+    if exist(sf,'file') > 0
+        fprintf('Skipped\n')
+        continue
+    end
+    saveFrame(sf,hms);
 end
 
 %frame_responses_smoothed = temporal_smoothing(frame_responses);
