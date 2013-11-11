@@ -34,7 +34,7 @@ switch hostname
         configs.piotr_toolbox = '/home/nguyenpx/code/toolbox';
         configs.YVT_path = '/home/nguyenpx/data2/YVT';
         configs.icdar_video = '/home/nguyenpx/data2/icdar_video';
-        configs.libsvm = '/home/nguyenpx/code/libsvm-3.12';
+        configs.libsvm = '/home/nguyenpx/code/libsvm-3.17';
 end
 
 % character classification configurations
