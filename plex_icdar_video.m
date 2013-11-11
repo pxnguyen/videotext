@@ -39,13 +39,14 @@ for vidindex = 1:length(vidps)
   % read in the lexicons
   lexpath = fullfile(lexicon_path,[name '.xml.lex']);
   fid=fopen(lexpath,'r'); lexS=textscan(fid,'%s'); lexS=lexS{1}';
-  
-  nFrame = vidobject.NumberOfFrames;
-  parfor f_ind = 1:nFrame
+  allframes = read(vidobject);
+  nFrame = size(allframes,4);
+  for f_ind = 1:nFrame
     fprintf('%s: frame %d\n',name,f_ind);
     sf = fullfile(res_folder,name,sprintf('%d.mat',f_ind));
     if exist(sf,'file') > 0, continue; end;
-    I = read(vidobject,f_ind);
+    
+    I = allframes(:,:,:,f_ind);
     
     % things that takes the most time
     [words,~,~,bbs]=wordSpot(I,lexS,fModel,wordSvm,[],{'minH',.04});
