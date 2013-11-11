@@ -41,12 +41,17 @@ for vidindex = 1:length(vidps)
   fid=fopen(lexpath,'r'); lexS=textscan(fid,'%s'); lexS=lexS{1}';
   allframes = read(vidobject);
   nFrame = size(allframes,4);
+  nDone = dir(fullfile(res_folder,name,'*,mat'));
+  if nFrame == nDone
+    continue
+  end
+  clear allframes;
   parfor f_ind = 1:nFrame
     fprintf('%s: frame %d\n',name,f_ind);
     sf = fullfile(res_folder,name,sprintf('%d.mat',f_ind));
     if exist(sf,'file') > 0, continue; end;
     
-    I = allframes(:,:,:,f_ind);
+    I = read(vidobject,f_ind);
     
     % things that takes the most time
     [words,~,~,bbs]=wordSpot(I,lexS,fModel,wordSvm,[],{'minH',.04});
@@ -55,7 +60,5 @@ for vidindex = 1:length(vidps)
     % the bbs
     saveRes(sf,words,bbs);
   end
-  
-    
 end
 end
