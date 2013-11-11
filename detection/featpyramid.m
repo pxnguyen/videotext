@@ -2,9 +2,10 @@ function pyramid=featpyramid(I,configs,varargin)
 dfs={'ss',2^(1/4),'minH',.04,'maxH',1,'thr',-75};
 [ss,minH,maxH,~] = getPrmDflt(varargin,dfs,1);
 sz=[configs.canonical_scale(1),configs.canonical_scale(2)];
-hImg=size(I,1); wImg=size(I,2);
-minHP=minH*min(size(I,1),size(I,2));
-maxHP=maxH*min(size(I,1),size(I,2));
+hImg=size(I,1);
+wImg=size(I,2);
+minHP=minH*min(hImg,wImg);
+maxHP=maxH*min(hImg,wImg);
 sStart=ceil(max(log(sz(1)/maxHP),log(sz(2)/wImg))/log(ss));
 sEnd=floor(log(sz(1)/minHP)/log(ss));
 pyramid.feat = cell(sEnd-sStart+1,1);

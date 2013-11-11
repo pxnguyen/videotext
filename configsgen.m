@@ -21,12 +21,18 @@ switch hostname
         configs.extracted_frames = '/home/phuc/Research/Samsung/vatic/extracted_frames';
         configs.videofolder = '/home/phuc/Research/Samsung/src/phase1accepts';
         configs.icdar_char = '/home/phuc/Research/data/ICDAR_char/';
-        configs.svt_char = '/home/phuc/Research/Dataset/SVT-CHAR/';
+        configs.svt_char = '/home/phuc/Research/data2/SVT-CHAR/';
         configs.piotr_toolbox = '/home/phuc/Research/toolbox';
+        configs.ihog = '/home/phuc/Research/Research/ihog-master/';
+        configs.clean_data = '/home/phuc/Research/videotext/matlab_code/chardet_traindata';
+        
+        % Video dataset
         configs.YVT_path = '/home/phuc/Research/data2/YVT';
+        configs.icdar_video = '/home/phuc/Research/data2/icdar_video';
     case 'deepthought'
         configs.piotr_toolbox = '/home/nguyenpx/code/toolbox';
         configs.YVT_path = '/home/nguyenpx/data2/YVT';
+        configs.icdar_video = '/home/nguyenpx/data2/icdar_video';
 end
 
 % character classification configurations
@@ -39,7 +45,7 @@ configs.alphabets = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvw
 configs.initThres = -1;
 
 % Training parameters
-configs.num_datamine_char = 5;
+configs.num_datamine_char = 10;
 configs.bin_size = 8;
 configs.n_orients= 8;
 configs.OVERLAY_TYPE=1;
@@ -48,3 +54,7 @@ configs.BOTH=3;
 configs.ALL=4;
 
 configs.classes = {'pos','neg'};
+
+lstruct = load('data/related_matrix');
+similar_classes = lstruct.related_matrix;
+configs.similar_classes = similar_classes;

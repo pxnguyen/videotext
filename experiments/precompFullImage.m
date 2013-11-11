@@ -54,9 +54,7 @@ for p=1:length(paramSets)
   d1=fullfile(tstDir,['res-' trnD],cNm,'images');
   
   %if(~exist(d1,'dir')), mkdir(d1); end
-  if(exist(d1,'dir')), 
-    rmdir(d1,'s');
-  end
+  if(exist(d1,'dir')), rmdir(d1,'s'); end
   mkdir(d1);
   save(fullfile(d1,'workspace')); % save all variables up to now
   saveRes=@(f,words,t1,t2,t3)save(f,'words','t1','t2','t3');
