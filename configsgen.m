@@ -23,6 +23,7 @@ switch hostname
         configs.icdar_char = '/home/phuc/Research/data/ICDAR_char/';
         configs.svt_char = '/home/phuc/Research/data2/SVT-CHAR/';
         configs.piotr_toolbox = '/home/phuc/Research/toolbox';
+        configs.libsvm = '/home/phuc/Research/libsvm-3.12';
         configs.ihog = '/home/phuc/Research/Research/ihog-master/';
         configs.clean_data = '/home/phuc/Research/videotext/matlab_code/chardet_traindata';
         
@@ -33,6 +34,7 @@ switch hostname
         configs.piotr_toolbox = '/home/nguyenpx/code/toolbox';
         configs.YVT_path = '/home/nguyenpx/data2/YVT';
         configs.icdar_video = '/home/nguyenpx/data2/icdar_video';
+        configs.libsvm = '/home/nguyenpx/code/libsvm-3.12';
 end
 
 % character classification configurations

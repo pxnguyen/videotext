@@ -2,6 +2,7 @@ configs=configsgen;
 
 % Add piotr toolbox
 addpath(genpath(configs.piotr_toolbox))
+addpath(genpath(configs.libsvm));
 
 % Add path ihog
 %addpath(genpath(configs.ihog))
