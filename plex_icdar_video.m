@@ -41,7 +41,7 @@ for vidindex = 1:length(vidps)
   fid=fopen(lexpath,'r'); lexS=textscan(fid,'%s'); lexS=lexS{1}';
   allframes = read(vidobject);
   nFrame = size(allframes,4);
-  for f_ind = 1:nFrame
+  parfor f_ind = 1:nFrame
     fprintf('%s: frame %d\n',name,f_ind);
     sf = fullfile(res_folder,name,sprintf('%d.mat',f_ind));
     if exist(sf,'file') > 0, continue; end;
