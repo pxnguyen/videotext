@@ -41,7 +41,7 @@ for vidindex = 1:length(vidps)
   fid=fopen(lexpath,'r'); lexS=textscan(fid,'%s'); lexS=lexS{1}';
   allframes = read(vidobject);
   nFrame = size(allframes,4);
-  nDone = dir(fullfile(res_folder,name,'*,mat'));
+  nDone = length(dir(fullfile(res_folder,name,'*,mat')));
   if nFrame == nDone
     continue
   end
