@@ -51,14 +51,18 @@ for vidindex = 1:length(vidps)
     sf = fullfile(res_folder,name,sprintf('%d.mat',f_ind));
     if exist(sf,'file') > 0, continue; end;
     
-    I = read(vidobject,f_ind);
+    try
+      I = read(vidobject,f_ind);
     
     % things that takes the most time
-    [words,~,~,bbs]=wordSpot(I,lexS,fModel,wordSvm,[],{'minH',.04});
+      [words,~,~,bbs]=wordSpot(I,lexS,fModel,wordSvm,[],{'minH',.04});
     
     % constructing the save path and save the final detections as well as
     % the bbs
-    saveRes(sf,words,bbs);
+      saveRes(sf,words,bbs);
+    catch e
+      e
+    end
   end
 end
 end
