@@ -43,6 +43,8 @@ for vidindex = 1:length(vidps)
   nFrame = vidobject.NumberOfFrames;
   parfor f_ind = 1:nFrame
     fprintf('%s: frame %d\n',name,f_ind);
+    sf = fullfile(res_folder,name,sprintf('%d.mat',f_ind));
+    if exist(sf,'file') > 0, continue; end;
     I = read(vidobject,f_ind);
     
     % things that takes the most time
@@ -50,7 +52,6 @@ for vidindex = 1:length(vidps)
     
     % constructing the save path and save the final detections as well as
     % the bbs
-    sf = fullfile(res_folder,name,sprintf('%d.mat',f_ind));
     saveRes(sf,words,bbs);
   end
   
