@@ -26,6 +26,7 @@ switch hostname
     configs.ihog = '/home/phuc/Research/Research/ihog-master/';
     configs.clean_data = '/home/phuc/Research/videotext/matlab_code/chardet_traindata';
     configs.icdar = '/home/phuc/Research/data2/icdar/';
+    configs.liblinear = '/home/phuc/Research/liblinear-1.92';
 
     % Training data
     configs.synth_data = '/home/phuc/Research/data2/synth';
@@ -34,10 +35,14 @@ switch hostname
     configs.YVT_path = '/home/phuc/Research/data2/YVT';
     configs.icdar_video = '/home/phuc/Research/data2/icdar_video';
   case 'deepthought'
+    % toolbox
     configs.piotr_toolbox = '/home/nguyenpx/code/toolbox';
+    configs.libsvm = '/home/nguyenpx/code/libsvm-3.17';
+    configs.liblinear = '/home/phuc/Research/liblinear-1.92';
+    
+    % dataset
     configs.YVT_path = '/home/nguyenpx/data2/YVT';
     configs.icdar_video = '/home/nguyenpx/data2/icdar_video';
-    configs.libsvm = '/home/nguyenpx/code/libsvm-3.17';
     configs.synth_data = '/home/nguyenpx/data2/synth';
     configs.clean_data = '/home/nguyenpx/data2/chardet_traindata';
 end
