@@ -6,7 +6,7 @@ cHogFtr=@(I)reshape((5*hog(single(imResample(I,configs.canonical_scale)),...
     configs.bin_size,configs.n_orients)),[],1);
 savemodel = @(sp,model) save(sp,'model');
 
-for char_index=1:length(chars)
+parfor char_index=1:length(chars)
   class = chars(char_index);
   fprintf('Training char %s\n',class);
 
