@@ -39,6 +39,7 @@ switch hostname
     configs.icdar_video = '/home/nguyenpx/data2/icdar_video';
     configs.libsvm = '/home/nguyenpx/code/libsvm-3.17';
     configs.synth_data = '/home/nguyenpx/data2/synth';
+    configs.clean_data = '/home/nguyenpx/data2/chardet_traindata';
 end
 
 % character classification configurations
