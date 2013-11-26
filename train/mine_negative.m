@@ -18,16 +18,16 @@ for i=1:length(indeces)
   [patches,~] = bbApply('crop',I,bbs);
 
   for j=1:length(patches)
-      image = patches{j};
-      image = imResample(image,char_dims);
-      if count <= limit
-          hard_negative_patches(:,:,:,count) = image;
-          count = count + 1;
-      else
-          isFull = true;
-          fprintf('Full, exiting\n');
-          return
-      end
+    image = patches{j};
+    image = imResample(image,char_dims);
+    if count <= limit
+      hard_negative_patches(:,:,:,count) = image;
+      count = count + 1;
+    else
+      isFull = true;
+      fprintf('Full, exiting\n');
+      return
+    end
   end
 end
 
