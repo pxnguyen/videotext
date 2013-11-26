@@ -38,7 +38,7 @@ switch hostname
     % toolbox
     configs.piotr_toolbox = '/home/nguyenpx/code/toolbox';
     configs.libsvm = '/home/nguyenpx/code/libsvm-3.17';
-    configs.liblinear = '/home/phuc/Research/liblinear-1.92';
+    configs.liblinear = '/home/nguyenpx/code/liblinear-1.92';
     
     % dataset
     configs.YVT_path = '/home/nguyenpx/data2/YVT';
