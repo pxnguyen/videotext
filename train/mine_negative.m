@@ -1,8 +1,7 @@
 function [hard_negative_patches,no_detection,isFull]=mine_negative(model,indeces,limit,nothing_list)
 configs = configsgen;
-char_dims = model.char_dims;
-isFull = false;
-files = dir(fullfile(configs.data_base2,'RandomFlickr','*.jpg'));
+char_dims = model.char_dims; isFull = false;
+files = dir(fullfile(configs.RandomFlickr,'*.jpg'));
 hard_negative_patches = zeros(char_dims(1),char_dims(2),3,limit);
 no_detection = zeros(600,1);
 count = 1;

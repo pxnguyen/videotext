@@ -7,7 +7,7 @@ hostname = strtrim(hostname);
 
 switch hostname
   case 'phuc-ThinkPad-T420'
-    configs.data_base2 = '/home/phuc/Research/data/';
+    configs.RandomFlickr = '/home/phuc/Research/data/RandomFlickr';
     configs.data_base = '/home/phuc/Research/data/';
     configs.ground_truth_path = '/home/phuc/Research/videotext/matlab_code/ground_truth';
     configs.guesses_path = '/home/phuc/Research/videotext/matlab_code/guesses';
@@ -41,6 +41,7 @@ switch hostname
     configs.liblinear = '/home/nguyenpx/code/liblinear-1.92';
     
     % dataset
+    configs.RandomFlickr = '/home/nguyenpx/data2/RandomFlickr';
     configs.YVT_path = '/home/nguyenpx/data2/YVT';
     configs.icdar_video = '/home/nguyenpx/data2/icdar_video';
     configs.synth_data = '/home/nguyenpx/data2/synth';
