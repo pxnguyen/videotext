@@ -9,7 +9,7 @@ ticId = ticStatus('Mining negatives...');
 for i=1:length(indeces)
   tocStatus( ticId, i/length(indeces) );
   current_index = indeces(i);
-  filepath = fullfile(configs.data_base2,'RandomFlickr',files(current_index).name);
+  filepath = fullfile(configs.RandomFlickr,files(current_index).name);
   I = imread(filepath);
   bbs = detect(I,{model},0);
   if size(bbs,1) < 1
