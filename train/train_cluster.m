@@ -1,7 +1,9 @@
 function model=train_cluster(features,labels,char_class,configs)
-testI = imread(fullfile(configs.extracted_frames,'7jjcAuEYW9M_0.mp4/0/0','72.jpg'));
-testI = imresize(testI,[405,720]);
 limit = 200; num_datamine = 5; debug = false;
+if debug
+  testI = imread(fullfile(configs.extracted_frames,'7jjcAuEYW9M_0.mp4/0/0','72.jpg'));
+  testI = imresize(testI,[405,720]);
+end
 
 nothing_list = zeros(600,1);
 char_dims = configs.canonical_scale;
