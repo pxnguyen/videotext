@@ -6,7 +6,7 @@ cHogFtr=@(I)reshape((5*hog(single(imResample(I,configs.canonical_scale)),...
     configs.bin_size,configs.n_orients)),[],1);
 savemodel = @(sp,model) save(sp,'model');
 
-parfor char_index=1:length(chars)
+for char_index=1:length(chars)
   class = chars(char_index);
   fprintf('Training char %s\n',class);
 
@@ -26,9 +26,9 @@ parfor char_index=1:length(chars)
   negimgs = get_negative(class);
   negfeats=fevalArrays(negimgs,cHogFtr)';
   % debugging
-  %for i=1:K
-    %figure(i*10);group=imgs(:,:,:,idx==i); montage(uint8(group));
-  %end
+  for i=1:K
+    figure(i*10);group=imgs(:,:,:,idx==i); montage(uint8(group));
+  end
   
   % constructing featsmix, this helps running parallely
   featsmix = cell(K,1);

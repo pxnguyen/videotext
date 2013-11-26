@@ -46,7 +46,7 @@ configs.canonical_scale = [100 100];
 configs.alphabets = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 % character trainings
-configs.nMixtures = 2;
+configs.nMixtures = 10;
 
 % Initial threshold to reject the "ridiculous" local boundingbox
 % This is used in getbbs, the point of this is to speed up the process
