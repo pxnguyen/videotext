@@ -11,4 +11,3 @@ addpath(genpath(configs.libsvm));
 addpath(genpath('.'));
 
 % Open all the matlab works
-matlabpool;

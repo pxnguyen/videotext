@@ -11,13 +11,13 @@ function validateFonts
 %  Please email kaw006@cs.ucsd.edu if you have questions.
 
 allfonts=listfonts;
-validFonts=[];
+validfonts=[];
 for i=1:length(allfonts)
     fontname = allfonts{i};
     figure(1); clf;
     text(0,.5,fontname,'fontsize', 100,'fontname',fontname);
     in=input('Render properly y/n? ','s');
-    if in=='y', validFonts{end+1} = fontname; end
+    if in=='y', validfonts{end+1} = fontname; end
 end
-save('validFonts', 'validFonts');
+save('validfonts', 'validfonts');
 end
