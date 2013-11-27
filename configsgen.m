@@ -11,9 +11,6 @@ switch hostname
     configs.data_base = '/home/phuc/Research/data/';
     configs.ground_truth_path = '/home/phuc/Research/videotext/matlab_code/ground_truth';
     configs.guesses_path = '/home/phuc/Research/videotext/matlab_code/guesses';
-    configs.path_to_rawChars74k = fullfile(configs.data_base2,'Chars74k/raw/English/Img/GoodImg/Bmp/');
-    configs.path_to_processedChars74k = fullfile(configs.data_base2,'Chars74k/Processed/');
-    configs.path_to_generalnegative = fullfile(configs.data_base2,'Chars74k/general_negatives/');
     configs.root_model_folder = '/home/phuc/Research/videotext/matlab_code/root_model/';
     configs.ground_truth_paths = 'formatted_results';
     configs.testingset = '/home/phuc/Research/videotext/matlab_code/testing';
@@ -24,7 +21,7 @@ switch hostname
     configs.piotr_toolbox = '/home/phuc/Research/toolbox';
     configs.libsvm = '/home/phuc/Research/libsvm-3.12';
     configs.ihog = '/home/phuc/Research/Research/ihog-master/';
-    configs.clean_data = '/home/phuc/Research/videotext/matlab_code/chardet_traindata';
+    configs.clean_data = '/home/phuc/Research/data2/chardet_traindata';
     configs.icdar = '/home/phuc/Research/data2/icdar/';
     configs.liblinear = '/home/phuc/Research/liblinear-1.92';
 
@@ -61,7 +58,7 @@ configs.nMixtures = 10;
 configs.initThres = -1;
 
 % Training parameters
-configs.num_datamine = 10;
+configs.num_datamine = 3;
 configs.OVERLAY_TYPE=1;
 configs.SCENE_TYPE=2;
 configs.BOTH=3;
