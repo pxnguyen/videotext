@@ -9,6 +9,8 @@ savemodel = @(sp,model) save(sp,'model');
 for char_index=1:length(chars)
   class = chars(char_index);
   fprintf('Training char %s\n',class);
+  prevTrained = dir(fullfile('mixture_models',sprintf('%s*',class)));
+  if (length(prevTrained) == K); continue; end;
 
   % read the files and files
   fprintf('Loading positives\n');
