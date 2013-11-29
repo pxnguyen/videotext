@@ -9,12 +9,13 @@ function models=loadMixtureModels(path)
 
 configs=configsgen;
 %modelPaths = dir(fullfile(path,'*.mat'));
-models = cell(length(configs.alphabets),configs.nMixtures);
-for iChar=1:length(configs.alphabets)
+%models = cell(length(configs.alphabets),configs.nMixtures);
+models = cell(2,configs.nMixtures);
+for iChar=1:2%:length(configs.alphabets)
   for iMixture=1:configs.nMixtures
     toload = fullfile(path,sprintf('%s_%d.mat',configs.alphabets(iChar),iMixture));
     if ~exist(toload,'file'); continue; end
     lstruct= load(toload);
-    models{iChar}{iMixture} = lstruct.model;
+    models{iChar,iMixture} = lstruct.model;
   end
 end
