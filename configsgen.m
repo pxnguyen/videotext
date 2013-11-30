@@ -43,6 +43,19 @@ switch hostname
     configs.icdar_video = '/home/nguyenpx/data2/icdar_video';
     configs.synth_data = '/home/nguyenpx/data2/synth';
     configs.clean_data = '/home/nguyenpx/data2/chardet_traindata';
+    
+  case 'ip-10-45-15-47'
+    % toolbox
+    configs.piotr_toolbox = '/home/ubuntu/code/toolbox';
+    configs.libsvm = '/home/ubuntu/code/libsvm-3.17';
+    configs.liblinear = '/home/ubuntu/code/liblinear-1.92';
+    
+    % dataset
+    configs.RandomFlickr = '/home/ubuntu/data2/RandomFlickr';
+    configs.YVT_path = '/home/ubuntu/data2/YVT';
+    configs.icdar_video = '/home/ubuntu/data2/icdar_video';
+    configs.synth_data = '/home/ubuntu/data2/synth';
+    configs.clean_data = '/home/ubuntu/data2/chardet_traindata';
 end
 
 % character classification configurations

@@ -1,5 +1,5 @@
 function model=train_cluster(features,labels,char_class,configs)
-limit = 200; num_datamine = configs.num_datamine; debug = false;
+limit = 100; num_datamine = configs.num_datamine; debug = false;
 if debug
   testI = imread(fullfile(configs.extracted_frames,'7jjcAuEYW9M_0.mp4/0/0','72.jpg'));
   testI = imresize(testI,[405,720]);
