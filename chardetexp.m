@@ -13,7 +13,7 @@ models = loadMixtureModels(modelPath);
 imgLst = dir(fullfile(imagesPath,'*.jpg'));
 nImg = length(imgLst);
 hmsPath = fullfile('hms');
-mkdir(hmsPath);
+if ~exist(hmsPath,'dir'); mkdir(hmsPath); end
 
 %% Get the heatmap
 savehms = @(sf,hms,scales) save(sf,'hms','scales');

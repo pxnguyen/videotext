@@ -39,6 +39,7 @@ switch hostname
     
     % dataset
     configs.RandomFlickr = '/home/nguyenpx/data2/RandomFlickr';
+    configs.icdar = '/home/phuc/Research/data2/icdar/';
     configs.YVT_path = '/home/nguyenpx/data2/YVT';
     configs.icdar_video = '/home/nguyenpx/data2/icdar_video';
     configs.synth_data = '/home/nguyenpx/data2/synth';
