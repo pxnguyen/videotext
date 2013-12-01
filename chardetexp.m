@@ -29,7 +29,7 @@ end
 
 %% Get the bbs
 savebbs = @(sf,bbs) save(sf,'bbs');
-dtDirMix = fullfile(dPath,'icdar','test','det_results_mix');
+dtDirMix = fullfile(configs.icdar,'test','det_results_mix');
 parfor i=1:nImg
   i
   imgPath = fullfile(imagesPath,imgLst(i).name);
