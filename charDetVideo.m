@@ -28,7 +28,11 @@ parfor iFrame=1:nFrames
   fprintf('Working on frame %d...\n',iFrame);
   sf = fullfile(newTempFolder,sprintf('%d.mat',iFrame));
   if exist(sf,'file') > 0; fprintf('Skipped\n'); continue; end
+  try
   I = read(vidobject,iFrame);
+  catch e
+    continue
+  end
   tic; [hms,scales] = get_filter_responses(I,models,configs); toc;
   saveFrame(sf,hms,scales);
 end
