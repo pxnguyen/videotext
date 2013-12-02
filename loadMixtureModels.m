@@ -8,10 +8,9 @@ function models=loadMixtureModels(path)
 %   models - format models{charind}{clusterind}
 
 configs=configsgen;
-%modelPaths = dir(fullfile(path,'*.mat'));
-%models = cell(length(configs.alphabets),configs.nMixtures);
-models = cell(2,configs.nMixtures);
-for iChar=1:5%:length(configs.alphabets)
+models = cell(length(configs.alphabets),configs.nMixtures);
+%models = cell(2,configs.nMixtures);
+for iChar=1:length(configs.alphabets)
   for iMixture=1:configs.nMixtures
     toload = fullfile(path,sprintf('%s_%d.mat',configs.alphabets(iChar),iMixture));
     if ~exist(toload,'file'); continue; end
