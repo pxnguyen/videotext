@@ -5,6 +5,7 @@ dataset_path = fullfile(configs.icdar,'test');
 imagesPath = fullfile(dataset_path,'images');
 modelPath = 'mixture_models';
 gtDir = fullfile(configs.icdar,'test','charAnn');
+dtDir = fullfile(configs.icdar,'test','det_results_synth');
 dtDirMix = fullfile(configs.icdar,'test','det_results_mix');
 dtDirReal = fullfile(configs.icdar,'test','det_results_real');
 
