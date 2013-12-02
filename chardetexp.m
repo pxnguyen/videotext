@@ -44,41 +44,40 @@ parfor i=1:nImg
 end
 
 %% Get the f-score
-fscores = zeros(20,3);
+fscores = zeros(length(configs.alphabets),2);
 %%
 beta = 2;
-ticId = ticStatus('Collecting Fscore',1,30,1);
-for iChar = 10:11
+for iChar = 1:length(configs.alphabets)
   try
     iChar
     currentChar = configs.alphabets(iChar);
-    tocStatus(ticId,iChar/(length(configs.alphabets)-1));
     [gt0,~] = bbGt('loadAll',gtDir,[],{'lbls',currentChar});
 
     fprintf('Load synth\n');
     dtsynth = loadBB(dtDir,iChar);
-    fprintf('Load mix\n');
-    dtmix = loadBB(dtDirMix,iChar);
+    %fprintf('Load mix\n');
+    %dtmix = loadBB(dtDirMix,iChar);
     fprintf('Load real\n');
     dtreal = loadBB(dtDirReal,iChar);
 
     % Computing score for mix
-    [gtm, dtm] = bbGt( 'evalRes', gt0, dtmix);
-    [xsm, ysm, ~] = bbGt('compRoc', gtm, dtm, 0);
-    fs = fscore2(xsm, ysm, beta);
-    fscores(iChar,1) = fs;
+%     [gtm, dtm] = bbGt( 'evalRes', gt0, dtmix);
+%     [xsm, ysm, ~] = bbGt('compRoc', gtm, dtm, 0);
+%     fs = fscore2(xsm, ysm, beta);
+%     fscores(iChar,1) = fs;
 
     % Computing score for synth
     [gts,dts] = bbGt( 'evalRes', gt0, dtsynth);
     [xss,yss,~]=bbGt('compRoc', gts, dts, 0);
     fs = fscore2(xss,yss,beta);
-    fscores(iChar,2) = fs;
+    fscores(iChar,1) = fs;
 
     % Computing score for real
     [gtr,dtr] = bbGt( 'evalRes', gt0, dtreal);
     [xsr,ysr,~]=bbGt('compRoc', gtr, dtr, 0);
     fs = fscore2(xsr,ysr,beta);
-    fscores(iChar,3) = fs;
+    fscores(iChar,2) = fs;
+    fscores
   catch e
     e
     continue

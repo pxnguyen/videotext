@@ -16,7 +16,6 @@ configs=configsgen;
 [fs,~] = bbGt('getFiles', {outputPath});
 dt0 = cell(length(fs),1);
 parfor i=1:length(fs)
-  i
   lstruct = load(fs{i}); bbs = lstruct.bbs;
 
   % equivocate the class
