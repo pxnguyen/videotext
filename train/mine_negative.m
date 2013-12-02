@@ -23,7 +23,7 @@ for i=1:length(indeces)
 
   for j=1:length(patches)
     image = imResample(patches{j},char_dims);
-    if count <= limit
+    if count <= limitd
       hard_negative_patches(:,:,:,count) = image;
       count = count + 1;
     else

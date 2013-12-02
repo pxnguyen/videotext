@@ -17,42 +17,46 @@ varargout = cell(1,max(1,nargout));
 end
 
 % This function returns the heatmap of the videos
-function gethm(vidobject,models)
+function isGood=gethm(vidobject,models)
 configs = configsgen; nFrames = vidobject.NumberOfFrames;
 
 newTempFolder = fullfile('temp','hms',vidobject.Name);
 if ~exist(newTempFolder,'dir'); mkdir(newTempFolder); end
 saveFrame = @(sf,hms,scales) save(sf,'hms','scales');
-parfor frame_index=1:nFrames
-  fprintf('Working on frame %d...',frame_index);
-  sf = fullfile(newTempFolder,sprintf('%d.mat',frame_index));
+parfor iFrame=1:nFrames
+  iFrame
+  fprintf('Working on frame %d...\n',iFrame);
+  sf = fullfile(newTempFolder,sprintf('%d.mat',iFrame));
   if exist(sf,'file') > 0; fprintf('Skipped\n'); continue; end
-  I = read(vidobject,frame_index);
-  [hms,scales] = get_filter_responses(I,models,configs);
+  I = read(vidobject,iFrame);
+  tic; [hms,scales] = get_filter_responses(I,models,configs); toc;
   saveFrame(sf,hms,scales);
 end
+isGood=true;
 end
 
-function getbbs(vidobject,models)
+function isGood=getbbs(vidobject,models)
 % Return the bbs from the previously collected hms
 configs = configsgen;
 nFrames = vidobject.NumberOfFrames;
 new_temp_folder = fullfile('temp','bbs',vidobject.Name);
 if ~exist(new_temp_folder,'dir'); mkdir(new_temp_folder); end
 savebbs = @(sf,bbs) save(sf,'bbs');
-parfor frame_index=1:nFrames
-  fprintf('Working on frame %d...',frame_index);
+parfor iFrame=1:nFrames
+  iFrame
+  fprintf('Working on frame %d...\n',iFrame);
   hms_path = fullfile('temp','hms',vidobject.Name);
   % load the hms
-  lstruct = load(fullfile(hms_path,sprintf('%d.mat',frame_index)));
+  lstruct = load(fullfile(hms_path,sprintf('%d.mat',iFrame)));
   hms = lstruct.hms;
-  sf = fullfile(new_temp_folder,sprintf('%d.mat',frame_index));
+  sf = fullfile(new_temp_folder,sprintf('%d.mat',iFrame));
   if exist(sf,'file') > 0; fprintf('Skipped\n'); continue; end;
   tic; bbs = getbbsHelper(models,hms,configs); toc;
   
   % Save the bbs
   savebbs(sf,bbs);
 end
+isGood=true;
 end
 
 function bbs=getbbsHelper(models,hms,scales,configs)
@@ -72,11 +76,8 @@ for level=1:nScales
     ind = find(hm > initthres); % Get the locations of the response
     [y,x] = ind2sub(size(hm),ind);
     if (isempty(x)); continue; end;
-    
     scores = hm(ind);
     if (size(x,2) > 1); x = x'; y = y'; scores = scores'; end
-    %assert(length(x)==length(scores));
-
     %Correct the position
     x = x * configs.bin_size/current_scale;
     y = y * configs.bin_size/current_scale;
