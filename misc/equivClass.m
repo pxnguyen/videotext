@@ -19,7 +19,7 @@ function [y1,ch2]=equivClass(y,ch)
 %  Please email kaw006@cs.ucsd.edu if you have questions.
 
 ch1=upper(ch); ch2=unique(ch1); y1=y;
-  for k=1:length(ch2)
-    y1(ch1(y)==ch2(k))=k;
-  end
+for k=1:length(ch2)
+  y1(ch1(y)==ch2(k))=k;
+end
 end
