@@ -44,7 +44,6 @@ parfor i=1:nImg
 end
 
 %% Get the f-score
-fscores = zeros(length(configs.alphabets),2);
 %%
 beta = 2;
 for iChar = 1:length(configs.alphabets)
@@ -55,16 +54,8 @@ for iChar = 1:length(configs.alphabets)
 
     fprintf('Load synth\n');
     dtsynth = loadBB(dtDir,iChar);
-    %fprintf('Load mix\n');
-    %dtmix = loadBB(dtDirMix,iChar);
     fprintf('Load real\n');
     dtreal = loadBB(dtDirReal,iChar);
-
-    % Computing score for mix
-%     [gtm, dtm] = bbGt( 'evalRes', gt0, dtmix);
-%     [xsm, ysm, ~] = bbGt('compRoc', gtm, dtm, 0);
-%     fs = fscore2(xsm, ysm, beta);
-%     fscores(iChar,1) = fs;
 
     % Computing score for synth
     [gts,dts] = bbGt( 'evalRes', gt0, dtsynth);
@@ -83,5 +74,3 @@ for iChar = 1:length(configs.alphabets)
     continue
   end
 end
-
-% draw the 
