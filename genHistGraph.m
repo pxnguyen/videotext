@@ -1,7 +1,7 @@
 % Get fscores and draw
 configs=configsgen;
 gtDir = fullfile(configs.icdar,'test','charAnn');
-dtDir = fullfile(configs.icdar,'test','det_results_synth');
+dtDir = fullfile(configs.icdar,'test','det_results');
 dtDirMix = fullfile(configs.icdar,'test','det_results_mix');
 dtDirReal = fullfile(configs.icdar,'test','det_results_real');
 fscores = zeros(length(configs.alphabets),2);
