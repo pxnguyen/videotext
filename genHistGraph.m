@@ -33,3 +33,6 @@ for iChar = 1:length(configs.alphabets)
     continue
   end
 end
+
+%%
+bar(fscores)

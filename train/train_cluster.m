@@ -1,12 +1,13 @@
-function model=train_cluster(features,labels,char_class,configs)
-limit = 100; num_datamine = configs.num_datamine; debug = false;
+function model=train_cluster(features,labels,char_class,configs,char_dims,debug)
+if ~exist('char_dims','var'); char_dims = configs.canonical_scale; end
+if ~exist('debug','var'); debug = false; end
+limit = 200; nDatamine = configs.num_datamine;
+
 if debug
   testI = imread(fullfile(configs.extracted_frames,'7jjcAuEYW9M_0.mp4/0/0','72.jpg'));
   testI = imresize(testI,[405,720]);
 end
-
-char_dims = configs.canonical_scale;
-cHogFtr=@(I)reshape((5*hog(single(imResample(I,configs.canonical_scale)),...
+cHogFtr=@(I)reshape((5*hog(single(imResample(I,char_dims)),...
   configs.bin_size,configs.n_orients)),[],1);
 
 iteration = 1;
@@ -16,7 +17,7 @@ model.char_dims = char_dims;
 model.char_index = char_class;
 %[predicted_label,~, scores] = predict(labels, sparse(double(features)), model);
 
-while iteration <= num_datamine
+while iteration <= nDatamine
   fprintf('Data mining - Iteration %d\n',iteration);
   % Here we are not removing
   %labels(easy_order) = []; features(easy_order,:) = []; % removing
