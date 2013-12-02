@@ -1,7 +1,6 @@
 % Given that you have mixtures of models, this script is to run and output
 % the performance on the ICDAR dataset
 configs=configsgen;
-[dPath,ch,ch1,chC,chClfNm,dfNP]=globals;
 dataset_path = fullfile(configs.icdar,'test');
 imagesPath = fullfile(dataset_path,'images');
 modelPath = 'mixture_models';
@@ -44,6 +43,7 @@ parfor i=1:nImg
 end
 
 %% Get the f-score
+fscores = zeros(length(configs.alphabets),2);
 %%
 beta = 2;
 for iChar = 1:length(configs.alphabets)
