@@ -1,2 +1,0 @@
-function visualize(model)
-end

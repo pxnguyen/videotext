@@ -11,7 +11,7 @@ function demoImg
 %  Please email kaw006@cs.ucsd.edu if you have questions.
 
 I=imread(fullfile('data','demo.jpg'));
-lexS={'michaels','world','market','fitness'};
+  lexS={'michaels','world','market','fitness'};
 
 im(I); drawnow;
 

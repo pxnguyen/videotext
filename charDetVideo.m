@@ -68,13 +68,14 @@ initthres = configs.initThres;
 total_bbs = zeros(1e6,6);
 total = 0;
 
-nScales = size(scales);
+nScales = length(scales);
 for level=1:nScales
   hms_scale = hms{level};
   if isempty(hms_scale); continue; end;
   current_scale = scales(level);
   for model_index = 1:length(models)
-    char_dims = models{model_index}.char_dims;
+    currentModel = models{model_index};
+    chadDims = currentModel.char_dims;
     hm = hms_scale{model_index} + models{model_index}.bias;
     
     ind = find(hm > initthres); % Get the locations of the response
@@ -85,10 +86,61 @@ for level=1:nScales
     %Correct the position
     x = x * configs.bin_size/current_scale;
     y = y * configs.bin_size/current_scale;
-    width = floor(char_dims(2)/current_scale);
-    height = floor(char_dims(1)/current_scale);
+    width = floor(chadDims(2)/current_scale);
+    height = floor(chadDims(1)/current_scale);
 
-    bbType = ones(length(x),1)*models{model_index}.char_index;
+    if currentModel.char_index > 62
+      ind = strfind(configs.alphabets,currentModel.char_index);
+    else
+      ind = currentModel.char_index;
+    end
+    bbType = ones(length(x),1)*ind;
+    bbs = [x,y,repmat(width,length(x),1),repmat(height,...
+           length(x),1),scores,bbType];
+
+    current_count = size(bbs,1);
+    if current_count > 0
+        total_bbs(total+1:total+current_count,:) = bbs;
+        total = total + current_count;
+    end
+  end
+end
+
+bbs=total_bbs(1:total,:);
+end
+
+function bbs=getbbsHelper2(models,hms,scales,iFrame,configs)
+initthres = configs.initThres;
+total_bbs = zeros(1e6,6);
+total = 0;
+
+nScales = length(scales);
+for level=1:nScales
+  hms_scale = hms{level};
+  if isempty(hms_scale); continue; end;
+  current_scale = scales(level);
+  for iModel = 1:length(models)
+    currentModel = models{iModel};
+    chadDims = currentModel.char_dims;
+    hm = hms_scale{iModel}(:,:,iFrame) + models{iModel}.bias;
+    
+    ind = find(hm > initthres); % Get the locations of the response
+    [y,x] = ind2sub(size(hm),ind);
+    if (isempty(x)); continue; end;
+    scores = hm(ind);
+    if (size(x,2) > 1); x = x'; y = y'; scores = scores'; end
+    %Correct the position
+    x = x * configs.bin_size/current_scale;
+    y = y * configs.bin_size/current_scale;
+    width = floor(chadDims(2)/current_scale);
+    height = floor(chadDims(1)/current_scale);
+
+    if currentModel.char_index > 62
+      ind = strfind(configs.alphabets,currentModel.char_index);
+    else
+      ind = currentModel.char_index;
+    end
+    bbType = ones(length(x),1)*ind;
     bbs = [x,y,repmat(width,length(x),1),repmat(height,...
            length(x),1),scores,bbType];
 

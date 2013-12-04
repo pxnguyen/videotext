@@ -35,7 +35,12 @@ for level=1:nScales
     width = floor(char_dims(2)/current_scale);
     height = floor(char_dims(1)/current_scale);
 
-    bbType = ones(length(x),1)*models{model_index}.char_index;
+    if models{model_index}.char_index > 60
+      ind = strfind(configs.alphabets,currentModel.char_index);
+    else
+      ind = models{model_index}.char_index;
+    end
+    bbType = ones(length(x),1)*ind;
     bbs = [x,y,repmat(width,length(x),1),repmat(height,...
            length(x),1),scores,bbType];
 
