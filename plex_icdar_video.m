@@ -1,4 +1,4 @@
-function plex_icdar_video
+function plex_icdar_video(indeces)
 % this script is to run kai system out of the box on the icdar video system
 configs=configsgen;
 vidpath = fullfile(configs.icdar_video,'test','videos','mp4');
@@ -9,11 +9,12 @@ saveRes=@(f,words,bbs)save(f,'words','bbs');
 
 % Loading the character models
 % Ferns + synthesis
-clfPath=fullfile('data','fern_synth.mat');
-fModel=load(clfPath);
-svmPath=fullfile('data','svm_svt.mat');
-model=load(svmPath); wordSvm=model.pNms1; wordSvm.thr=-1;
-for vidindex = 1:length(vidps)
+clfPath=fullfile('data','fern_synth.mat'); fModel=load(clfPath);
+svmPath=fullfile('data','svm_svt.mat'); model=load(svmPath);
+wordSvm=model.pNms1; wordSvm.thr=-1;
+
+if ~exist('indeces','var'); indeces=1:length(vidps); end;
+for vidindex = indeces
   vpath = fullfile(vidpath,vidps(vidindex).name);
   fprintf('Working on %s\n',vpath);
 
@@ -37,13 +38,11 @@ for vidindex = 1:length(vidps)
   
   % read in the lexicons
   lexpath = fullfile(lexicon_path,[name '.xml.lex']);
-  fid=fopen(lexpath,'r'); lexS=textscan(fid,'%s'); lexS=lexS{1}';
+  fid=fopen(lexpath,'r'); lexS=textscan(fid,'%s'); lexS=lexS{1}'; fclose(fid);
   allframes = read(vidobject);
   nFrame = size(allframes,4);
   nDone = length(dir(fullfile(resFolder,name,'*,mat')));
-  if nFrame == nDone
-    continue
-  end
+  if nFrame == nDone; continue; end
   
   clear allframes;
   parfor iFrame = 1:nFrame
@@ -53,7 +52,8 @@ for vidindex = 1:length(vidps)
     
     try
       I = read(vidobject,iFrame);
-      [words,~,~,bbs]=wordSpot(I,lexS,fModel,wordSvm,[],{'minH',.04});
+      tic; [words,~,~,bbs]=wordSpot(I,lexS,fModel,wordSvm,[],{'minH',.04});
+      toc;
       saveRes(sf,words,bbs);
     catch e
       e

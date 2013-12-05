@@ -3,14 +3,13 @@ function [bbs]=connect(results)
 %
 % INPUTS:
 %   results: [Nx6] array, [x,y,w,h,score,frame]
-%   words: [Nx1] cell array
 % 
 % OUTPUTS:
 %   bbs: [Nx7] [x,y,w,h,score,id]
 %   fwords: new filtered words to match with the filtered bbs
 
 configs=configsgen;
-nSearch = 5; % num of frames to search backward
+nSearch = 7; % num of frames to search backward
 maxFrame = max(unique(results(:,6)));
 bbs = zeros(size(results,1),size(results,2)+1);
 bbs(:,1:6) = results;
@@ -18,11 +17,8 @@ bbs(:,7) = -ones(size(bbs,1),1);
 curid = 1;
 for frame=1:maxFrame
   bbi = find(results(:,6)==frame); % index of bbs that is in the current frame
-  if frame-nSearch <= 0
-    farleft = 1;
-  else
-    farleft = frame-nSearch;
-  end
+  if frame-nSearch <= 0; farleft = 1;
+  else farleft = frame-nSearch; end;
   prev_bbi = find(results(:,6)==farleft);
   prev_bbs = bbs(min(prev_bbi):min(bbi)-1,:);
   for i=1:length(bbi)
@@ -70,17 +66,15 @@ for i=1:length(frames)
   end
 end
 valid_votes = votes(votes>0);
-if length(valid_votes) == 0
-  id = curid;
-  next_id = curid + 1;
+if isempty(valid_votes)
+  id = curid; next_id = curid + 1;
   return
 end
 id = mode(valid_votes);
 end
 
 function r=overlap(a,b)
-  u = bbApply('union',a,b);
-  in = bbApply('intersect',a,b);
+  u = bbApply('union',a,b); in = bbApply('intersect',a,b);
   r = bbApply('area',in)/bbApply('area',u);
 end
 
