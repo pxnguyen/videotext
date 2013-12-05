@@ -34,7 +34,7 @@ switch hostname
   case 'deepthought'
     % toolbox
     configs.piotr_toolbox = '/home/nguyenpx/code/toolbox';
-    configs.libsvm = '/home/nguyenpx/code/libsvm-3.17';
+    configs.libsvm = '/home/nguyenpx/code/libsvm-3.12';
     configs.liblinear = '/home/nguyenpx/code/liblinear-1.92';
     
     % dataset
@@ -48,7 +48,7 @@ switch hostname
   case 'ip-10-45-15-47'
     % toolbox
     configs.piotr_toolbox = '/home/ubuntu/code/toolbox';
-    configs.libsvm = '/home/ubuntu/code/libsvm-3.17';
+    configs.libsvm = '/home/ubuntu/code/libsvm-3.1';
     configs.liblinear = '/home/ubuntu/code/liblinear-1.92';
     
     % dataset
