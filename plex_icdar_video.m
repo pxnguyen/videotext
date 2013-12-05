@@ -22,9 +22,7 @@ for vidindex = indeces
   done = false;
   while ~done
     vidobject = VideoReader(vpath);
-    if vidobject.NumberOfFrames > 0
-      done = true;
-    end
+    if vidobject.NumberOfFrames > 0; done = true; end
   end
   
   % Parse the name
@@ -46,7 +44,7 @@ for vidindex = indeces
   
   clear allframes;
   parfor iFrame = 1:nFrame
-    fprintf('%s: frame %d\n',name,iFrame);
+    fprintf('%s: frame %d...',name,iFrame);
     sf = fullfile(resFolder,name,sprintf('%d.mat',iFrame));
     if exist(sf,'file') > 0; fprintf('Skipped\n'); continue; end;
     
@@ -58,6 +56,8 @@ for vidindex = indeces
     catch e
       e
     end
+    
+    fprintf('Done\n');
   end
 end
 end
